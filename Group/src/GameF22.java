@@ -1,5 +1,8 @@
 
-
+/*
+ * Yismel & Alexia 
+ * Added bullet line 23...functionality soldier and bullet line 155-167 .. draw bullet line 835
+ */
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
@@ -15,6 +18,10 @@ public class GameF22 extends GameBase {
 	//needs more work
 	Zombies zombie;
 	Soldier soldier = new Soldier(width / 2, height - 280, 27*4, 51*4);
+	
+	//bullet size  
+	Bullets bullet = new Bullets(775, 720, 27, 51);
+	
 	//in-game markers
 	GameObjects rightarrow;
 	GameObjects start = new GameObjects(100, 100, 434, 96, "start.png");
@@ -99,7 +106,9 @@ public class GameF22 extends GameBase {
 				level1.background1a.moveRight(3);		level1.midground1a.moveRight(5);
 				level1.foreground1a.moveRight(7);		level1.background1b.moveRight(3);
 				level1.midground1b.moveRight(5);		level1.foreground1b.moveRight(7);
-			  }	 		
+			  }
+			  
+	
 			
 			// Right Parallax scrolling instructions
 			if (level1.background1a.x < 0 - width) { Random r = new Random();
@@ -140,6 +149,23 @@ public class GameF22 extends GameBase {
 			if (level1.foreground1b.x > 0 + width) {		Random r = new Random();
 				level1.foreground1b.x = -width + r.nextInt(1);
 			}
+			
+			
+			 //set the soldier to pose for gun
+			  if(pressing[_S]) {
+				  soldier.takeWeaponRT();
+				  soldier.takeWeaponLT();
+				  
+				  bullet.visible = true;
+				  bullet.setVelocity(15, 0);
+				  
+				  if(bullet.overlaps(zombie)) {
+						bullet.visible = false;
+						bullet.setVelocity(0, 0);
+					}
+			  } 
+			  bullet.moveBasedOnPhysics();
+			
 		}
 
 		// Controls for Level 2
@@ -261,6 +287,8 @@ public class GameF22 extends GameBase {
 			if (level2.foreground2b.x > 0 + width) {	Random r = new Random();
 				level2.foreground2b.x = -width + r.nextInt(1);
 			}
+			
+			
 		}
 
 		// Controls for Level 3
@@ -803,6 +831,9 @@ public class GameF22 extends GameBase {
 		
 		soldier.draw(g);
 		
+		//bullet being drawn
+		bullet.draw(g);
+		
 		
 		// Health bar needs work and is in progress
 		Integer health = new Integer(health_status);
@@ -829,4 +860,4 @@ public class GameF22 extends GameBase {
 	}
 		
 	
-}					
+}
