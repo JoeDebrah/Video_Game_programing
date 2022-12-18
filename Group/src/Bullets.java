@@ -1,9 +1,9 @@
 import java.awt.Graphics;
 /* 
  * Needs work 
- * -on multiplying the bullets
+* -on multiplying the bullets
  * -setting it invisible
- * 
+ * -multiplying the bullets
  */
 
 public class Bullets extends Rect{
@@ -17,7 +17,8 @@ public class Bullets extends Rect{
 	int pose = LT;
 	
 	Animation [] anim;
-
+  
+	boolean visible = false;
 	
 	public Bullets(int x, int y, int w, int h) {
 		super(x,y,w,h);
@@ -45,8 +46,9 @@ public class Bullets extends Rect{
 	}
 
 	public void draw(Graphics g) {
-		
+		if(visible) {
 		g.drawImage(anim[pose].currentImage(), x, y, null);
+    }
 		
 	}
 }

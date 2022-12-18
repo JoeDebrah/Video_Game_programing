@@ -1,7 +1,7 @@
 
 /*
  * Yismel & Alexia 
- * Added bullet line 23...functionality soldier and bullet line 155-167 .. draw bullet line 835
+ * Added bullet line 23...functionality soldier and bullet line 113-119 .. draw line 825
  */
 import java.awt.Graphics;
 import java.awt.Image;
@@ -108,7 +108,16 @@ public class GameF22 extends GameBase {
 				level1.midground1b.moveRight(5);		level1.foreground1b.moveRight(7);
 			  }
 			  
-	
+			  
+			  //set the soldier to pose for gun
+			  if(pressing[_S]) {
+				  soldier.takeWeaponRT();
+				  soldier.takeWeaponLT();
+				  
+				  bullet.setVelocity(5, 0);
+			  } 
+			  bullet.moveBasedOnPhysics();
+			
 			
 			// Right Parallax scrolling instructions
 			if (level1.background1a.x < 0 - width) { Random r = new Random();
@@ -149,23 +158,6 @@ public class GameF22 extends GameBase {
 			if (level1.foreground1b.x > 0 + width) {		Random r = new Random();
 				level1.foreground1b.x = -width + r.nextInt(1);
 			}
-			
-			
-			 //set the soldier to pose for gun
-			  if(pressing[_S]) {
-				  soldier.takeWeaponRT();
-				  soldier.takeWeaponLT();
-				  
-				  bullet.visible = true;
-				  bullet.setVelocity(15, 0);
-				  
-				  if(bullet.overlaps(zombie)) {
-						bullet.visible = false;
-						bullet.setVelocity(0, 0);
-					}
-			  } 
-			  bullet.moveBasedOnPhysics();
-			
 		}
 
 		// Controls for Level 2
@@ -287,8 +279,6 @@ public class GameF22 extends GameBase {
 			if (level2.foreground2b.x > 0 + width) {	Random r = new Random();
 				level2.foreground2b.x = -width + r.nextInt(1);
 			}
-			
-			
 		}
 
 		// Controls for Level 3
