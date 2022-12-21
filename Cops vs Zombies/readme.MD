@@ -1,3 +1,6 @@
+This is the most Recent version of our game.
+See instructions below on how to properly import into eclipse.
+
 First clone, pull or download the "Test" folder into whatever location you like.
 Second, go into eclipse, create a new project. Don't name the the project you created in eclipse with a project name
 that already exists in your eclipse workspace.
